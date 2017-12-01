@@ -11,7 +11,7 @@ def main(inic):
     big_bang(cobra_inicial,
              tela=TELA,
              frequencia=30,
-             quando_tick=mover_jogo,
+             quando_tick=mover_cobra,
              desenhar=desenha,
              quando_tecla=trata_tecla)
 main(cobra_inicial)

@@ -65,7 +65,7 @@ def mostrar_pontos():
 mover_cobra: Cobra -> Cobra
 Produz a próxima cobra (ou seja, fazer ela andar)
 '''
-def mover_jogo(cobra):
+def mover_cobra(cobra):
     global x_maca,y_maca,pontos,corpo,comprimento
     cobra.x = cobra.x + cobra.dx
     cobra.y = cobra.y + cobra.dy
