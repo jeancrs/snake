@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import random,time
+import random
 from universe import *
-
-''' Jogo da Cobrinha '''
 
 '''==========================================================================================='''
 '''# Preparacao da Tela e Constantes: '''
 
 (LARGURA, ALTURA) = (600, 400)
 TELA = pg.display.set_mode((LARGURA, ALTURA))
+
 try:
     IMG_BACKGROUND = pg.image.load('img/back.jpg')
 except:
