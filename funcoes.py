@@ -9,7 +9,7 @@ Produz a próxima cobra (ou seja, fazer ela andar)
 '''
 
 def mover_cobra(cobra):
-    if cobra.x < 0 or cobra.x > LARGURA:
+    if cobra.x < PAREDE_ESQUERDA or cobra.x > PAREDE_DIREITA or cobra.y < PAREDE_CIMA or cobra.y > PAREDE_BAIXO:
         return "Erro: Cobra invalida"
     else:
         cobra.x = cobra.x + cobra.dx
@@ -22,7 +22,7 @@ Produz a próxima maca na tela
 '''
 
 def mover_maca(maca):
-    if maca.x < 0 or maca.y > ALTURA:
+    if maca.x < PAREDE_ESQUERDA or maca.x > PAREDE_DIREITA or maca.y < PAREDE_CIMA or maca.y > PAREDE_BAIXO:
         return "Erro: maca invalida"
     else:
         maca.x = round(random.randrange(0,LARGURA - maca.blocom))
@@ -36,18 +36,14 @@ A funcao que eh chamada a cada tick para o jogo
 
 def mover_jogo(jogo):
     mover_cobra(jogo.cobra)
-    cabeca = []
-    cabeca.append(jogo.cobra.x)
-    cabeca.append(jogo.cobra.y)
+    cabeca = [jogo.cobra.x, jogo.cobra.y]
     jogo.cobra.corpo.append(cabeca)
-    if (jogo.cobra.x == jogo.maca.blocom and jogo.cobra.x <= jogo.maca.x + jogo.maca.blocom) or (jogo.cobra.x + jogo.cobra.bloco >= jogo.maca.x and jogo.cobra.x + jogo.cobra.bloco <= jogo.maca.x + jogo.maca.blocom) :
-        if (jogo.cobra.y >= jogo.maca.y and jogo.cobra.y <= jogo.maca.y + jogo.maca.blocom):
+    if (jogo.cobra.x == jogo.maca.blocom) and (jogo.cobra.x <= jogo.maca.x + jogo.maca.blocom) or (jogo.cobra.x + jogo.cobra.bloco >= jogo.maca.x) and (jogo.cobra.x + jogo.cobra.bloco <= jogo.maca.x + jogo.maca.blocom) :
+        if (jogo.cobra.y >= jogo.maca.y) and (jogo.cobra.y <= jogo.maca.y + jogo.maca.blocom):
             jogo.maca.x, jogo.maca.y = mover_maca(jogo.maca)
             jogo.cobra.comprimento +=1
             jogo.pontos +=1
-    if (jogo.cobra.x >= PAREDE_DIREITA) or (jogo.cobra.x <= PAREDE_ESQUERDA):
-        jogo.game_over = True
-    if (jogo.cobra.y <= PAREDE_CIMA) or (jogo.cobra.y >= PAREDE_BAIXO):
+    if (jogo.cobra.x >= PAREDE_DIREITA) or (jogo.cobra.x <= PAREDE_ESQUERDA) or (jogo.cobra.y <= PAREDE_CIMA) or (jogo.cobra.y >= PAREDE_BAIXO):
         jogo.game_over = True
     if len(jogo.cobra.corpo) > jogo.cobra.comprimento:
         del jogo.cobra.corpo[0]
@@ -91,6 +87,7 @@ Desenha o jogo
 
 def desenha_jogo(jogo):
     if jogo.game_over:
+        desenha_fundo()
         fonte = pg.font.SysFont("Showcard Gothic", 72)
         fonte2 = pg.font.SysFont("Showcard Gothic", 30)
         fonte3 = pg.font.SysFont("Showcard Gothic", 10)
@@ -139,7 +136,7 @@ Trata tecla geral
 '''
 
 def trata_tecla(jogo, tecla):
-    if (tecla == pg.K_SPACE)  and (jogo.game_over):
+    if tecla == pg.K_SPACE  and jogo.game_over:
         return JOGO_INICIAL
     else:
         jogo.cobra = trata_tecla_cobra(jogo.cobra, tecla)

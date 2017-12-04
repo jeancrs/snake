@@ -14,7 +14,7 @@ try:
     IMG_BACKGROUND = pg.image.load('img/back.jpg')
 except:
     IMG_BACKGROUND = pg.Surface((100, 100), pg.SRCALPHA)
-    print("ERRO: Imagens nao foram carregadas.")
+    print("ERRO: As imagens não foram encontradas.")
 
 PAREDE_ESQUERDA = -5
 PAREDE_DIREITA = 585
