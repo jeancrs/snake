@@ -1,10 +1,10 @@
 from funcoes import *
 
-'''==========================================================================================='''
+'''================='''
 ''' Main (Big Bang):
 '''
 
-''' EstadoMundo -> EstadoMundo '''
+''' Jogo -> Jogo '''
     ''' inicie o mundo com main(JOGO_INICIAL) '''
 
 def main(inic):
