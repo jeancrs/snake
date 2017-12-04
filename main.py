@@ -5,7 +5,7 @@ from funcoes import *
 '''
 
 ''' EstadoMundo -> EstadoMundo '''
-''' inicie o mundo com main(cobra_inicial) '''
+    ''' inicie o mundo com main(JOGO_INICIAL) '''
 
 def main(inic):
     big_bang(inic,
