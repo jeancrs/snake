@@ -4,14 +4,13 @@ from constantes import *
 
 
 from namedlist import namedlist
-Cobra = namedlist("Cobra", "x, dx, y, dy")
+Cobra = namedlist("Cobra", "x, dx, y, dy,comprimento,corpo,bloco")
 '''
-Cobra pode ser criada como: Cobra(Int[LARGURA/2, ALTURA/2], Int)
-interp.: representa a posicao x e y da cobra, e o deslocamento
-a cada tick no eixo x e y.
+Cobra pode ser criada como: Cobra(Int[LARGURA/2, ALTURA/2,1,10,1,[],20, Int)
+interp.: representa a posicao x, y, dx, dy, comprimento, corpo, e o tamanho do quadrado da cobra.
 Exemplos:
 '''
-cobra_inicial = Cobra(LARGURA/2, 5,ALTURA/2,0)
+cobra_inicial = Cobra(LARGURA/2, 5,ALTURA/2,0,1,[],20)
 ''''
 Template para funções que recebem Cobra:
 def fn_para_cobra(c):
@@ -19,13 +18,13 @@ def fn_para_cobra(c):
         return "Game Over"
 
 '''
-Maca = ("Maca", "x, y")
+Maca = namedlist("Maca", "x, y,blocom")
 '''
-Maca pode ser criada como: Cobra(Int[LARGURA/3, ALTURA/3], Int)
-interp.: representa a posicao x e y da maca.
+Maca pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
+interp.: representa a posicao x e y da maca, e tamanho da maca.
 Exemplos:
 '''
-maca_inicial = (x_maca, y_maca)
+maca_inicial = Maca(500, 190,30)
 
 ''''
 Template para funções que recebem Maca:
@@ -33,4 +32,23 @@ def fn_para_maca(m):
     if maca.x <0 or maca.x > LARGURA:
         return "Maca invalida"
 
+'''
+
+Jogo = namedlist("Jogo","cobra,maca,game_over,pontos")
+
+''' Jogo é criado como: Jogo(cobra, maca, Boolean,pontos)
+interp. Um jogo é composto por uma cobra, maca, pontos
+e uma flag (game_over) que indica se o jogo está acontecendo
+ou nao.
+Exemplos:
+'''
+
+JOGO_INICIAL = Jogo(cobra_inicial,maca_inicial,False,0)
+JOGO_GAME_OVER= Jogo(Cobra(PAREDE_ESQUERDA,1,10,5,1,[],20),maca_inicial,True,0)
+
+'''Template para funcao que recebe Jogo:
+def fn_para_jogo(jogo):
+    ... jogo.cobra
+        jogo.maca
+        jogo.game_over
 '''
