@@ -1,30 +1,39 @@
 from dados import *
 
-'''==========================================================================================='''
+'''===================='''
 ''' Funções: '''
-'''==========================================================================================='''
+
 '''
 mover_cobra: Cobra -> Cobra
 Produz a próxima cobra (ou seja, fazer ela andar)
 '''
-def mover_cobra(cobra):
-    cobra.x = cobra.x + cobra.dx
-    cobra.y = cobra.y + cobra.dy
-    return cobra
 
+def mover_cobra(cobra):
+    if cobra.x < 0 or cobra.x > LARGURA:
+        return "Erro: Cobra invalida"
+    else:
+        cobra.x = cobra.x + cobra.dx
+        cobra.y = cobra.y + cobra.dy
+    return cobra
 
 '''
 mover_maca: Maca -> Maca
 Produz a próxima maca na tela
 '''
+
 def mover_maca(maca):
-    maca.x = round(random.randrange(0,LARGURA - maca.blocom))
-    maca.y = round(random.randrange(0, ALTURA - maca.blocom))
+    if maca.x < 0 or maca.y > ALTURA:
+        return "Erro: maca invalida"
+    else:
+        maca.x = round(random.randrange(0,LARGURA - maca.blocom))
+        maca.y = round(random.randrange(0, ALTURA - maca.blocom))
     return maca.x, maca.y
+
 '''
 mover_jogo: Jogo -> Jogo
 A funcao que eh chamada a cada tick para o jogo
 '''
+
 def mover_jogo(jogo):
     mover_cobra(jogo.cobra)
     cabeca = []
@@ -46,26 +55,31 @@ def mover_jogo(jogo):
         if gomo == cabeca:
             jogo.game_over = True
     return jogo
+
 '''
 desenha: Cobra -> Imagem
 Desenha cobra na tela
 '''
+
 def desenha_cobra(cobra):
     for gomo in cobra.corpo:
      pg.draw.rect(TELA, (0, 102, 51), (gomo[0], gomo[1], cobra.bloco, cobra.bloco))
     return cobra
+
 '''
 desenha: Maca -> Imagem
-Desenha maca na tela
+Desenha a maca na tela
 '''
+
 def desenha_maca(maca):
     pg.draw.rect(TELA, (255, 0, 0),(maca.x,maca.y,maca.blocom,maca.blocom))
     return maca
-'''==========================================================================================='''
+
 '''
 desenha_fundo: Background -> Imagem
 Desenha o background
 '''
+
 def desenha_fundo():
     TELA.blit(IMG_BACKGROUND,
               (0,
@@ -74,6 +88,7 @@ def desenha_fundo():
 desenha_jogo: Jogo -> Imagem
 Desenha o jogo
 '''
+
 def desenha_jogo(jogo):
     if jogo.game_over:
         fonte = pg.font.SysFont("Showcard Gothic", 72)
@@ -98,7 +113,7 @@ def desenha_jogo(jogo):
         texto = fonte.render('Pontos: {0}'.format(pontos), 0, (0,0,0))
         TELA.blit(texto, (10, 20))
         return jogo
-'''==========================================================================================='''
+    
 '''
 trata_tecla_cobra: Cobra, EventoTecla -> Cobra
 Quando teclar as setas do teclado, guia a cobra em uma direção
@@ -117,10 +132,12 @@ def trata_tecla_cobra(cobra, tecla):
       cobra.dx = 0
       cobra.dy = 5
     return cobra
+
 '''
 trata_tecla: Jogo, EventoTecla -> Jogo
 Trata tecla geral
 '''
+
 def trata_tecla(jogo, tecla):
     if (tecla == pg.K_SPACE)  and (jogo.game_over):
         return JOGO_INICIAL
