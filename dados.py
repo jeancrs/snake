@@ -1,6 +1,7 @@
 from constantes import *
 
-''' ##### Inicio das definições de dados ##### '''
+'''==================='''
+'''# Definições de dados: '''
 
 
 from namedlist import namedlist
