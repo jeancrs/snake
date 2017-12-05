@@ -47,8 +47,8 @@ def mover_jogo(jogo):
         jogo.game_over = True
     if len(jogo.cobra.corpo) > jogo.cobra.comprimento:
         del jogo.cobra.corpo[0]
-    for gomo in jogo.cobra.corpo[:-1]:
-        if gomo == cabeca:
+    for cont in jogo.cobra.corpo[:-1]:
+        if cont == cabeca:
             jogo.game_over = True
     return jogo
 
@@ -58,8 +58,8 @@ Desenha cobra na tela
 '''
 
 def desenha_cobra(cobra):
-    for gomo in cobra.corpo:
-     pg.draw.rect(TELA, (0, 102, 51), (gomo[0], gomo[1], cobra.bloco, cobra.bloco))
+    for cont in cobra.corpo:
+     pg.draw.rect(TELA, (255,215,0), (cont[0], cont[1], cobra.bloco, cobra.bloco))
     return cobra
 
 '''
@@ -87,14 +87,13 @@ Desenha o jogo
 
 def desenha_jogo(jogo):
     if jogo.game_over:
-        desenha_fundo()
         fonte = pg.font.SysFont("Showcard Gothic", 72)
         fonte2 = pg.font.SysFont("Showcard Gothic", 30)
         fonte3 = pg.font.SysFont("Showcard Gothic", 10)
         ## render: String, Int, Cor
         pontos = str(jogo.pontos)
         texto = fonte.render("FIM DE JOGO", 1, (255, 0, 0))
-        texto2 = fonte2.render('Recorde: {0}'.format(pontos), 0, (0, 102, 51))
+        texto2 = fonte2.render('Recorde: {0}'.format(pontos), 0, (0,100,0))
         texto3 = fonte3.render('Aperte ESPAÇO para tentar novamente', 1, (0, 0, 0))
 
         ## blit: String, (Int, Int)
@@ -107,8 +106,8 @@ def desenha_jogo(jogo):
         desenha_maca(jogo.maca)
         pontos = str(jogo.pontos)
         fonte = pg.font.SysFont("Showcard Gothic", 25)
-        texto = fonte.render('Pontos: {0}'.format(pontos), 0, (0,0,0))
-        TELA.blit(texto, (10, 20))
+        texto = fonte.render('Pontos: {0}'.format(pontos), 0, (255,255,255))
+        TELA.blit(texto, (30, 30))
         return jogo
     
 '''

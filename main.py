@@ -14,6 +14,6 @@ def main(inic):
              quando_tick=mover_jogo,
              desenhar=desenha_jogo,
              quando_tecla=trata_tecla,
-             modo_debug = False,
+             modo_debug = True,
              fonte_debug=15)
 main(JOGO_INICIAL)
