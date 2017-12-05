@@ -38,8 +38,8 @@ def mover_jogo(jogo):
     mover_cobra(jogo.cobra)
     cabeca = [jogo.cobra.x, jogo.cobra.y]
     jogo.cobra.corpo.append(cabeca)
-    if (jogo.cobra.x == jogo.maca.blocom) and (jogo.cobra.x <= jogo.maca.x + jogo.maca.blocom) or (jogo.cobra.x + jogo.cobra.bloco >= jogo.maca.x) and (jogo.cobra.x + jogo.cobra.bloco <= jogo.maca.x + jogo.maca.blocom) :
-        if (jogo.cobra.y >= jogo.maca.y) and (jogo.cobra.y <= jogo.maca.y + jogo.maca.blocom):
+    if jogo.maca.x < jogo.cobra.x < jogo.maca.x + jogo.maca.blocom or jogo.maca.x < jogo.cobra.x + jogo.cobra.bloco < jogo.maca.x + jogo.maca.blocom:
+        if jogo.maca.y < jogo.cobra.y < jogo.maca.y + jogo.maca.blocom:
             jogo.maca.x, jogo.maca.y = mover_maca(jogo.maca)
             jogo.cobra.comprimento +=1
             jogo.pontos +=1
