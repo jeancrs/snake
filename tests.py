@@ -20,11 +20,11 @@ class MeusTestes(unittest.TestCase):
     def testMover_jogo(self):
         self.assertEqual(mover_jogo(
                             Jogo(cobra=Cobra(LARGURA / 2, 5, ALTURA / 2, 0, 1, [], 20),
-                                 maca=[Maca(500, 190, 30)],
+                                 maca=Maca(500, 190, 30),
                                  game_over=False,
                                  pontos = 0)),
-                            Jogo(cobra=Cobra(LARGURA / 3, 5, ALTURA / 2, 0, 1, [], 20),
-                              maca=[Maca(200, 190, 30)],
+                            Jogo(cobra=Cobra(LARGURA / 2 +5, 5, ALTURA / 2, 0, 1, [305.0,200.0], 20),
+                              maca=Maca(500, 190, 30),
                               game_over=False,
                               pontos = 0))
 

@@ -89,18 +89,15 @@ A função que é chamada a cada tick para o jogo.
 
 
 def mover_jogo(jogo):
-
-    for maca in jogo.maca:
-        if colidirem_cm(jogo.cobra, jogo.maca):
-            jogo.cobra.comprimento += 1
-            jogo.pontos += 1
-            return jogo
+    if colidirem_cm(jogo.cobra, jogo.maca):
+        jogo.cobra.comprimento += 1
+        jogo.pontos += 1
+        return jogo
 
     mover_cobra(jogo.cobra)
-    for cobra in jogo.cobra:
-        if colidirem_pa(jogo.cobra):
-            jogo.game_over = True
-            return jogo
+    if colidirem_pa(jogo.cobra):
+        jogo.game_over = True
+        return jogo
 
     cabeca = [jogo.cobra.x, jogo.cobra.y]
     jogo.cobra.corpo.append(cabeca)
@@ -219,3 +216,7 @@ def trata_tecla(jogo, tecla):
     else:
         jogo.cobra = trata_tecla_cobra(jogo.cobra, tecla)
         return jogo
+
+print(mover_jogo(
+    Jogo(cobra=Cobra(LARGURA / 2, 5, ALTURA / 2, 0, 1, [], 20), maca=Maca(500, 190, 30), game_over=False, pontos=0)))
+
