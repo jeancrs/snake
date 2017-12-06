@@ -14,6 +14,16 @@ def mover_cobra(cobra):
     else:
         cobra.x = cobra.x + cobra.dx
         cobra.y = cobra.y + cobra.dy
+        
+    if cobra.x > PAREDE_DIREITA:
+        cobra.x = PAREDE_DIREITA
+    elif cobra.x < PAREDE_ESQUERDA:
+        cobra.x = PAREDE_ESQUERDA
+    elif cobra.y < PAREDE_CIMA:
+        cobra.y = PAREDE_CIMA
+    elif cobra.y > PAREDE_BAIXO:
+        cobra.y = PAREDE_BAIXO  
+        
     return cobra
 
 '''
@@ -27,6 +37,15 @@ def mover_maca(maca):
     else:
         maca.x = round(random.randrange(0,LARGURA - maca.blocom))
         maca.y = round(random.randrange(0, ALTURA - maca.blocom))
+    
+    if maca.x > PAREDE_DIREITA:
+        maca.x = PAREDE_DIREITA
+    elif maca.x < PAREDE_ESQUERDA:
+        maca.x = PAREDE_ESQUERDA
+    elif maca.y < PAREDE_CIMA:
+        maca.y = PAREDE_CIMA
+    elif maca.y > PAREDE_BAIXO:
+        maca.y = PAREDE_BAIXO  
     return maca.x, maca.y
 
 '''
