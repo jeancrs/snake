@@ -8,21 +8,21 @@ from namedlist import namedlist
 Cobra = namedlist("Cobra", "x, dx, y, dy,comprimento,corpo,bloco")
 '''
 Cobra pode ser criada como: Cobra(Int[LARGURA/2, ALTURA/2,1,10,1,[],20, Int)
-interp.: representa a posicao x, y, dx, dy, comprimento, corpo, e o tamanho do quadrado da cobra.
+interp.: representa a posição x, y, dx, dy, comprimento, corpo, e o tamanho do quadrado da cobra.
 Exemplos:
 '''
 cobra_inicial = Cobra(LARGURA/2, 5,ALTURA/2,0,1,[],20)
 ''''
-Template para funções que recebem Cobra:
+Template para função que recebe Cobra:
 def fn_para_cobra(c):
     if cobra.x colidir com  as paredes:
-        return "Game Over"
+        return "Fim de Jogo"
 
 '''
 Maca = namedlist("Maca", "x, y,blocom")
 '''
-Maca pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
-interp.: representa a posicao x e y da maca, e tamanho da maca.
+Maça pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
+interp.: representa a posicao x e y da maça, e tamanho da maça.
 Exemplos:
 '''
 maca_inicial = Maca(500, 190,30)
@@ -31,16 +31,16 @@ maca_inicial = Maca(500, 190,30)
 Template para funções que recebem Maca:
 def fn_para_maca(m):
     if maca.x <0 or maca.x > LARGURA:
-        return "Maca invalida"
+        return "Erro: Maça Inválida"
 
 '''
 
 Jogo = namedlist("Jogo","cobra,maca,game_over,pontos")
 
 ''' Jogo é criado como: Jogo(cobra, maca, Boolean,pontos)
-interp. Um jogo é composto por uma cobra, maca, pontos
+interp. Um jogo é composto por uma cobra, maça, pontos
 e uma flag (game_over) que indica se o jogo está acontecendo
-ou nao.
+ou não.
 Exemplos:
 '''
 

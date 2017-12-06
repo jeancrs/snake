@@ -59,6 +59,6 @@ def escreve_estado(estado, tela, fonte_debug):
 
     counter = fonte_debug
     for line in texto:
-        label = myfont.render(line, 1, (255, 255, 255))
+        label = myfont.render(line, 1, (0, 0, 0))
         tela.blit(label, (5, counter))
         counter += fonte_debug

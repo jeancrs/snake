@@ -5,7 +5,7 @@ from funcoes import *
 '''
 
 ''' Jogo -> Jogo '''
-''' inicie o mundo com main(JOGO_INICIAL) '''
+''' Inicia o mundo com main(JOGO_INICIAL) '''
 
 def main(inic):
     big_bang(inic,
