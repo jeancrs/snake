@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import random
 from universe import *
 
 '''==========================================================================================='''
@@ -18,6 +17,6 @@ except:
 
 PAREDE_ESQUERDA = -5
 PAREDE_DIREITA = 585
+
 PAREDE_CIMA = -1
 PAREDE_BAIXO = 385
-

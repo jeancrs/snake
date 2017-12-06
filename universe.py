@@ -3,7 +3,7 @@
 import pygame as pg
 import sys, os
 
-COR_BRANCO = (255, 255, 255)
+COR_BRANCO = (255,255,255)
 
 def big_bang(inic, tela,
              quando_tick=lambda e: e, \
@@ -59,6 +59,6 @@ def escreve_estado(estado, tela, fonte_debug):
 
     counter = fonte_debug
     for line in texto:
-        label = myfont.render(line, 1, (0, 0, 0))
+        label = myfont.render(line, 1, (255, 0, 0))
         tela.blit(label, (5, counter))
         counter += fonte_debug
