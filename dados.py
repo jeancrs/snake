@@ -35,8 +35,22 @@ def fn_para_maca(m):
         return "Erro: Maça Inválida."
 
 '''
+Maca2 = namedlist("Maca2", "x, y,blocom")
+'''
+Maça pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
+interp.: representa a posicao x e y da maça, e tamanho da maça.
+Exemplos:
+'''
+maca2_inicial = Maca(100, 200, 30)
 
-Jogo = namedlist("Jogo", "cobra,maca,game_over,pontos")
+''''
+Template para funções que recebem Maca:
+def fn_para_maca(m):
+   if maca.x < PAREDE_ESQUERDA or maca.x > PAREDE_DIREITA or maca.y < PAREDE_CIMA or maca.y > PAREDE_BAIXO:
+        return "Erro: Maça Inválida."
+
+'''
+Jogo = namedlist("Jogo", "cobra,maca,,maca2,game_over,pontos")
 
 ''' Jogo é criado como: Jogo(cobra, maca, Boolean,pontos)
 interp. Um jogo é composto por uma cobra, maça, pontos
@@ -45,8 +59,8 @@ ou não.
 Exemplos:
 '''
 
-JOGO_INICIAL = Jogo(cobra_inicial, maca_inicial, False, 0)
-JOGO_GAME_OVER = Jogo(Cobra(PAREDE_ESQUERDA, 1, 10, 5, 1, [], 20), maca_inicial, True, 0)
+JOGO_INICIAL = Jogo(cobra_inicial, maca_inicial, maca2_inicial, False, 0)
+JOGO_GAME_OVER = Jogo(Cobra(PAREDE_ESQUERDA, 1, 10, 5, 1, [], 20), maca_inicial, maca2_inicial, True, 0)
 
 '''Template para funcao que recebe Jogo:
 def fn_para_jogo(jogo):

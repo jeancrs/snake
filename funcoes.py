@@ -54,6 +54,30 @@ def mover_maca(maca):
 
 
 '''
+mover_maca: Maca -> Maca
+Move a maça no eixo x e y.
+'''
+
+
+def mover_maca2(maca2):
+    if maca2.x < PAREDE_ESQUERDA or maca2.x > PAREDE_DIREITA or maca2.y < PAREDE_CIMA or maca2.y > PAREDE_BAIXO:
+        return "Erro: Maça Inválida."
+    else:
+        maca2.x = round(random.randrange(0, LARGURA - maca2.blocom))
+        maca2.y = round(random.randrange(0, ALTURA - maca2.blocom))
+
+    if maca2.x > PAREDE_DIREITA:
+        maca2.x = PAREDE_DIREITA
+    elif maca2.x < PAREDE_ESQUERDA:
+        maca2.x = PAREDE_ESQUERDA
+    elif maca2.y < PAREDE_CIMA:
+        maca2.y = PAREDE_CIMA
+    elif maca2.y > PAREDE_BAIXO:
+        maca2.y = PAREDE_BAIXO
+    return maca2.x, maca2.y
+
+
+'''
 colidirem_cm: Cobra, Maca -> Boolean
 Verifica se a cobra e a maça colidiram.
 '''
@@ -75,7 +99,8 @@ Verifica se a cobra colidiu com a parede.
 
 
 def colidirem_pa(cobra):
-    if (cobra.x >= PAREDE_DIREITA) or (cobra.x <= PAREDE_ESQUERDA) or (cobra.y <= PAREDE_CIMA) or (cobra.y >= PAREDE_BAIXO):
+    if (cobra.x >= PAREDE_DIREITA) or (cobra.x <= PAREDE_ESQUERDA) or (cobra.y <= PAREDE_CIMA) or (
+            cobra.y >= PAREDE_BAIXO):
         return True
     else:
         return False
@@ -89,8 +114,13 @@ A função que é chamada a cada tick para o jogo.
 
 def mover_jogo(jogo):
     if colidirem_cm(jogo.cobra, jogo.maca):
+        jogo.maca2.x, jogo.maca2.y = mover_maca(jogo.maca2)
         jogo.cobra.comprimento += 1
         jogo.pontos += 1
+        return jogo
+
+    if colidirem_cm(jogo.cobra, jogo.maca2):
+        jogo.game_over = True
         return jogo
 
     mover_cobra(jogo.cobra)
@@ -99,28 +129,28 @@ def mover_jogo(jogo):
         return jogo
 
     cabeca = [jogo.cobra.x, jogo.cobra.y]
-    jogo.cobra.corpo.append(cabeca) #acrescenta
+    jogo.cobra.corpo.append(cabeca)  # acrescenta
 
-    for gomo in jogo.cobra.corpo[:-1]: #menos o último
+    for gomo in jogo.cobra.corpo[:-1]:  # menos o último
         if gomo == cabeca:
             jogo.game_over = True
             return jogo
 
     if len(jogo.cobra.corpo) > jogo.cobra.comprimento:
-        del jogo.cobra.corpo[0] #remove o índice 0
+        del jogo.cobra.corpo[0]  # remove o índice 0
 
     return jogo
 
 
 '''
 desenha_cobra: Cobra -> Imagem
-Desenha cobra na tela.
+Desenha cobra na tela e as próximas.
 '''
 
 
 def desenha_cobra(cobra):
-    for gomo in cobra.corpo:
-        pg.draw.rect(TELA, (255, 215, 0), (gomo[0], gomo[1], cobra.bloco, cobra.bloco))
+    for XeY in cobra.corpo:
+        pg.draw.rect(TELA, (255, 215, 0), (XeY[0], XeY[1], cobra.bloco, cobra.bloco))
     return cobra
 
 
@@ -130,9 +160,10 @@ Desenha a maça na tela.
 '''
 
 
-def desenha_maca(maca):
-    pg.draw.rect(TELA, (255, 0, 0), (maca.x, maca.y, maca.blocom, maca.blocom))
-    return maca
+def desenha_maca(maca, maca2):
+    TELA.blit(IMG_MACA, (maca.x, maca.y))
+    TELA.blit(IMG_MACA2, (maca2.x, maca2.y))
+    return maca, maca2
 
 
 '''
@@ -142,9 +173,7 @@ Desenha o background.
 
 
 def desenha_fundo():
-    TELA.blit(IMG_BACKGROUND,
-              (0,
-               0))
+    TELA.blit(IMG_BACKGROUND, (0, 0))
 
 
 '''
@@ -173,7 +202,7 @@ def desenha_jogo(jogo):
     else:
         desenha_fundo()
         desenha_cobra(jogo.cobra)
-        desenha_maca(jogo.maca)
+        desenha_maca(jogo.maca, jogo.maca2)
         pontos = str(jogo.pontos)
         fonte = pg.font.SysFont("Showcard Gothic", 25)
         texto = fonte.render('Pontos: {0}'.format(pontos), 1, (255, 255, 255))
@@ -215,7 +244,3 @@ def trata_tecla(jogo, tecla):
     else:
         jogo.cobra = trata_tecla_cobra(jogo.cobra, tecla)
         return jogo
-
-print(mover_jogo(
-    Jogo(cobra=Cobra(LARGURA / 2, 5, ALTURA / 2, 0, 1, [], 20), maca=Maca(500, 190, 30), game_over=False, pontos=0)))
-
