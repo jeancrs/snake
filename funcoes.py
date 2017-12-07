@@ -75,8 +75,7 @@ Verifica se a cobra colidiu com a parede.
 
 
 def colidirem_pa(cobra):
-    if (cobra.x >= PAREDE_DIREITA) or (cobra.x <= PAREDE_ESQUERDA) or (cobra.y <= PAREDE_CIMA) or (
-            cobra.y >= PAREDE_BAIXO):
+    if (cobra.x >= PAREDE_DIREITA) or (cobra.x <= PAREDE_ESQUERDA) or (cobra.y <= PAREDE_CIMA) or (cobra.y >= PAREDE_BAIXO):
         return True
     else:
         return False
@@ -100,15 +99,15 @@ def mover_jogo(jogo):
         return jogo
 
     cabeca = [jogo.cobra.x, jogo.cobra.y]
-    jogo.cobra.corpo.append(cabeca)
+    jogo.cobra.corpo.append(cabeca) #acrescenta
 
-    for gomo in jogo.cobra.corpo[:-1]:
+    for gomo in jogo.cobra.corpo[:-1]: #menos o último
         if gomo == cabeca:
             jogo.game_over = True
             return jogo
 
     if len(jogo.cobra.corpo) > jogo.cobra.comprimento:
-        del jogo.cobra.corpo[0]
+        del jogo.cobra.corpo[0] #remove o índice 0
 
     return jogo
 
