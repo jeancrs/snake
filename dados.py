@@ -17,7 +17,7 @@ cobra_inicial = Cobra(LARGURA / 2, 5, ALTURA / 2, 0, 1, [], 20)
 Template para função que recebe Cobra:
 def fn_para_cobra(c):
     if cobra.x < PAREDE_ESQUERDA or cobra.x > PAREDE_DIREITA or cobra.y < PAREDE_CIMA or cobra.y > PAREDE_BAIXO:
-        return "Erro: cobra Inválida"
+        return "Erro: Cobra Inválida"
 
 '''
 Maca = namedlist("Maca", "x, y,blocom")
