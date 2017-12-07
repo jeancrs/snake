@@ -70,7 +70,7 @@ def colidirem_cm(cobra, maca):
 
 '''
 colidirem_pa: Cobra, PAREDES -> Boolean
-Verifica se a cobra e as paredes colidiram.
+Verifica se a cobra colidiu com a parede.
 '''
 
 
