@@ -39,8 +39,8 @@ def mover_maca(maca):
     if maca.x < PAREDE_ESQUERDA or maca.x > PAREDE_DIREITA or maca.y < PAREDE_CIMA or maca.y > PAREDE_BAIXO:
         return "Erro: Maça Inválida."
     else:
-        maca.x = round(random.randrange(0, LARGURA - maca.blocom))
-        maca.y = round(random.randrange(0, ALTURA - maca.blocom))
+        maca.x = round(random.randrange(0, LARGURA - maca.bloco))
+        maca.y = round(random.randrange(0, ALTURA - maca.bloco))
 
     if maca.x > PAREDE_DIREITA:
         maca.x = PAREDE_DIREITA
@@ -50,7 +50,7 @@ def mover_maca(maca):
         maca.y = PAREDE_CIMA
     elif maca.y > PAREDE_BAIXO:
         maca.y = PAREDE_BAIXO
-        
+
     return maca.x, maca.y
 
 
@@ -64,8 +64,8 @@ def mover_maca2(maca2):
     if maca2.x < PAREDE_ESQUERDA or maca2.x > PAREDE_DIREITA or maca2.y < PAREDE_CIMA or maca2.y > PAREDE_BAIXO:
         return "Erro: Maça Inválida."
     else:
-        maca2.x = round(random.randrange(0, LARGURA - maca2.blocom))
-        maca2.y = round(random.randrange(0, ALTURA - maca2.blocom))
+        maca2.x = round(random.randrange(0, LARGURA - maca2.bloco))
+        maca2.y = round(random.randrange(0, ALTURA - maca2.bloco))
 
     if maca2.x > PAREDE_DIREITA:
         maca2.x = PAREDE_DIREITA
@@ -75,7 +75,7 @@ def mover_maca2(maca2):
         maca2.y = PAREDE_CIMA
     elif maca2.y > PAREDE_BAIXO:
         maca2.y = PAREDE_BAIXO
-        
+
     return maca2.x, maca2.y
 
 
@@ -86,13 +86,14 @@ Verifica se a cobra e a maça colidiram.
 
 
 def colidirem_cm(cobra, maca):
-    if maca.x < cobra.x < maca.x + maca.blocom or maca.x < cobra.x + cobra.bloco < maca.x + maca.blocom:
-        if maca.y < cobra.y < maca.y + maca.blocom:
+    if maca.x < cobra.x < maca.x + maca.bloco or maca.x < cobra.x + cobra.bloco < maca.x + maca.bloco:
+        if maca.y < cobra.y < maca.y + maca.bloco:
             maca.x, maca.y = mover_maca(maca)
             return True
     else:
         return False
-    
+
+
 '''
 colidirem_cm2: Cobra, Maca2 -> Boolean
 Verifica se a cobra e a maça2 colidiram.
@@ -100,13 +101,12 @@ Verifica se a cobra e a maça2 colidiram.
 
 
 def colidirem_cm2(cobra, maca2):
-    if maca2.x < cobra.x < maca2.x + maca2.blocom or maca2.x < cobra.x + cobra.bloco < maca2.x + maca2.blocom:
-        if maca2.y < cobra.y < maca2.y + maca2.blocom:
+    if maca2.x < cobra.x < maca2.x + maca2.bloco or maca2.x < cobra.x + cobra.bloco < maca2.x + maca2.bloco:
+        if maca2.y < cobra.y < maca2.y + maca2.bloco:
             maca2.x, maca2.y = mover_maca2(maca2)
             return True
     else:
         return False
-    
 
 
 '''
@@ -141,7 +141,7 @@ def mover_jogo(jogo):
         return jogo
 
     mover_cobra(jogo.cobra)
-    
+
     if colidirem_pa(jogo.cobra):
         jogo.game_over = True
         return jogo
@@ -149,8 +149,8 @@ def mover_jogo(jogo):
     cabeca = [jogo.cobra.x, jogo.cobra.y]
     jogo.cobra.corpo.append(cabeca)  # acrescenta
 
-    for gomo in jogo.cobra.corpo[:-1]:  # menos o último
-        if gomo == cabeca:
+    for bloco in jogo.cobra.corpo[:-1]:  # menos o último
+        if bloco == cabeca:
             jogo.game_over = True
             return jogo
 
@@ -167,8 +167,8 @@ Desenha cobra na tela e as próximas.
 
 
 def desenha_cobra(cobra):
-    for gomo in cobra.corpo:
-        pg.draw.rect(TELA, (255, 215, 0), (gomo[0], gomo[1], cobra.bloco, cobra.bloco))
+    for bloco in cobra.corpo:
+        pg.draw.rect(TELA, (50, 205, 50), (bloco[0], bloco[1], cobra.bloco, cobra.bloco))
     return cobra
 
 
@@ -195,6 +195,16 @@ def desenha_fundo():
 
 
 '''
+desenha_fundo2: Background -> Imagem
+Desenha o background.
+'''
+
+
+def desenha_fundo2():
+    TELA.blit(IMG_BACKGROUND2, (0, 0))
+
+
+'''
 desenha_jogo: Jogo -> Imagem
 Desenha o jogo.
 '''
@@ -202,7 +212,7 @@ Desenha o jogo.
 
 def desenha_jogo(jogo):
     if jogo.game_over:
-        desenha_fundo()
+        desenha_fundo2()
         fonte = pg.font.SysFont("Showcard Gothic", 72)
         fonte2 = pg.font.SysFont("Showcard Gothic", 30)
         fonte3 = pg.font.SysFont("Showcard Gothic", 10)

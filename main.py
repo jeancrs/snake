@@ -11,7 +11,7 @@ from funcoes import *
 def main(inic):
     big_bang(inic,
              tela=TELA,
-             frequencia=30,
+             frequencia=50,
              quando_tick=mover_jogo,
              desenhar=desenha_jogo,
              quando_tecla=trata_tecla,
