@@ -149,8 +149,8 @@ Desenha cobra na tela e as próximas.
 
 
 def desenha_cobra(cobra):
-    for XeY in cobra.corpo:
-        pg.draw.rect(TELA, (255, 215, 0), (XeY[0], XeY[1], cobra.bloco, cobra.bloco))
+    for gomo in cobra.corpo:
+        pg.draw.rect(TELA, (255, 215, 0), (gomo[0], gomo[1], cobra.bloco, cobra.bloco))
     return cobra
 
 
