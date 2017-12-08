@@ -27,18 +27,28 @@ class MeusTestes(unittest.TestCase):
                  maca2=Maca2(100, 200, 30),
                  game_over=False,
                  pontos=0)),
-            Jogo(cobra=Cobra(100 + 5, 5, 200, 0, 1, [105, 200], 20),
+            Jogo(cobra=Cobra(x=105, dx=5, y=200, dy=0, comprimento=1, corpo=[105, 200], bloco=20),
+                 maca=Maca(x=500, y=190, bloco=30), maca2=Maca2(x=100, y=200, bloco=30), game_over=False, pontos=0))
+
+
+
+
+
+
+
+
+
+
+
+# ARRUMAR
+
+        self.assertEqual(mover_jogo(
+            Jogo(cobra=Cobra(100, 5, 200, 0, 1, [105, 200], 20),
                  maca=Maca(500, 190, 30),
                  maca2=Maca2(100, 200, 30),
                  game_over=False,
-                 pontos=0))
-
-        self.assertEqual(mover_jogo(
-            Jogo(cobra=Cobra(100, 5, 200, 0, 1, [], 20),
-                 maca=Maca(500, 190, 30),
-                 maca2=Maca2(100, 200, 30),
-                 game_over=False)),
-            Jogo(cobra=Cobra(100 + 5, 5, 200, 0, 1, [], 20),
+                 pontos = 0)),
+            Jogo(cobra=Cobra(PAREDE_DIREITA, 5, 200, 0, 1, [105, 200], 20),
                  maca=Maca(500, 190, 30),
                  maca2=Maca2(100, 200, 30),
                  game_over=True,

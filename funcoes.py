@@ -62,7 +62,7 @@ Move a maça no eixo x e y.
 
 def mover_maca2(maca2):
     if maca2.x < PAREDE_ESQUERDA or maca2.x > PAREDE_DIREITA or maca2.y < PAREDE_CIMA or maca2.y > PAREDE_BAIXO:
-        return "Erro: Maça Inválida."
+        return "Erro: Maça2 Inválida."
     else:
         maca2.x = round(random.randrange(0, LARGURA - maca2.bloco))
         maca2.y = round(random.randrange(0, ALTURA - maca2.bloco))
@@ -103,7 +103,6 @@ Verifica se a cobra e a maça2 colidiram.
 def colidirem_cm2(cobra, maca2):
     if maca2.x < cobra.x < maca2.x + maca2.bloco or maca2.x < cobra.x + cobra.bloco < maca2.x + maca2.bloco:
         if maca2.y < cobra.y < maca2.y + maca2.bloco:
-            maca2.x, maca2.y = mover_maca2(maca2)
             return True
     else:
         return False
@@ -146,7 +145,7 @@ def mover_jogo(jogo):
         jogo.game_over = True
         return jogo
 
-    cabeca = [jogo.cobra.x, jogo.cobra.y]
+    cabeca = [jogo.cobra.x, jogo.cobra.y] # auxiliar
     jogo.cobra.corpo.append(cabeca)  # acrescenta
 
     for bloco in jogo.cobra.corpo[:-1]:  # menos o último
@@ -168,7 +167,8 @@ Desenha cobra na tela e as próximas.
 
 def desenha_cobra(cobra):
     for bloco in cobra.corpo:
-        pg.draw.rect(TELA, (50, 205, 50), (bloco[0], bloco[1], cobra.bloco, cobra.bloco))
+                                           # rect    largura
+        pg.draw.rect(TELA, (50, 205, 50), (bloco[0], bloco[1], cobra.bloco, cobra.bloco)) # tamanho
     return cobra
 
 
