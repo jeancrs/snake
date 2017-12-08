@@ -50,11 +50,12 @@ def mover_maca(maca):
         maca.y = PAREDE_CIMA
     elif maca.y > PAREDE_BAIXO:
         maca.y = PAREDE_BAIXO
+        
     return maca.x, maca.y
 
 
 '''
-mover_maca: Maca -> Maca
+mover_maca2: Maca2 -> Maca2
 Move a maça no eixo x e y.
 '''
 
@@ -74,6 +75,7 @@ def mover_maca2(maca2):
         maca2.y = PAREDE_CIMA
     elif maca2.y > PAREDE_BAIXO:
         maca2.y = PAREDE_BAIXO
+        
     return maca2.x, maca2.y
 
 
@@ -90,6 +92,21 @@ def colidirem_cm(cobra, maca):
             return True
     else:
         return False
+    
+'''
+colidirem_cm2: Cobra, Maca2 -> Boolean
+Verifica se a cobra e a maça2 colidiram.
+'''
+
+
+def colidirem_cm2(cobra, maca2):
+    if maca2.x < cobra.x < maca2.x + maca2.blocom or maca2.x < cobra.x + cobra.bloco < maca2.x + maca2.blocom:
+        if maca2.y < cobra.y < maca2.y + maca2.blocom:
+            maca2.x, maca2.y = mover_maca2(maca2)
+            return True
+    else:
+        return False
+    
 
 
 '''
@@ -119,11 +136,12 @@ def mover_jogo(jogo):
         jogo.pontos += 1
         return jogo
 
-    if colidirem_cm(jogo.cobra, jogo.maca2):
+    if colidirem_cm2(jogo.cobra, jogo.maca2):
         jogo.game_over = True
         return jogo
 
     mover_cobra(jogo.cobra)
+    
     if colidirem_pa(jogo.cobra):
         jogo.game_over = True
         return jogo
@@ -160,7 +178,7 @@ Desenha a maça na tela.
 '''
 
 
-def desenha_maca(maca, maca2):
+def desenha_macas(maca, maca2):
     TELA.blit(IMG_MACA, (maca.x, maca.y))
     TELA.blit(IMG_MACA2, (maca2.x, maca2.y))
     return maca, maca2
@@ -202,7 +220,7 @@ def desenha_jogo(jogo):
     else:
         desenha_fundo()
         desenha_cobra(jogo.cobra)
-        desenha_maca(jogo.maca, jogo.maca2)
+        desenha_macas(jogo.maca, jogo.maca2)
         pontos = str(jogo.pontos)
         fonte = pg.font.SysFont("Showcard Gothic", 25)
         texto = fonte.render('Pontos: {0}'.format(pontos), 1, (255, 255, 255))
