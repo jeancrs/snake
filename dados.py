@@ -8,7 +8,7 @@ from namedlist import namedlist
 Cobra = namedlist("Cobra", "x, dx, y, dy,comprimento,corpo,bloco")
 
 '''
-Cobra pode ser criada como: Cobra(Int[LARGURA / 2, ALTURA / 2, 0, 1, [], 20 Int)
+Cobra pode ser criada como: Cobra(Int [LARGURA / 2, 5, ALTURA / 2, 0, 1, [], 20] Int)
 interp.: representa a posição x, y, dx, dy, comprimento, corpo, e o tamanho do quadrado da cobra.
 Exemplos:
 '''
@@ -20,9 +20,9 @@ def fn_para_cobra(c):
         return "Erro: Cobra Inválida"
 
 '''
-Maca = namedlist("Maca", "x, y,blocom")
+Maca = namedlist("Maca", "x, y, blocom")
 '''
-Maça pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
+Maça pode ser criada como: Maca(Int [LARGURA/3, ALTURA/3, 20] Int)
 interp.: representa a posicao x e y da maça, e tamanho da maça.
 Exemplos:
 '''
@@ -37,8 +37,8 @@ def fn_para_maca(m):
 '''
 Maca2 = namedlist("Maca2", "x, y,blocom")
 '''
-Maça pode ser criada como: Maca(Int[LARGURA/3, ALTURA/3,20], Int)
-interp.: representa a posicao x e y da maça, e tamanho da maça.
+Maça2 pode ser criada como: Maca2(Int [LARGURA/3, ALTURA/3, 20], Int)
+interp.: representa a posicao x e y da maça2, e tamanho da maça2.
 Exemplos:
 '''
 maca2_inicial = Maca(100, 200, 30)
@@ -50,10 +50,10 @@ def fn_para_maca(m):
         return "Erro: Maça Inválida."
 
 '''
-Jogo = namedlist("Jogo", "cobra,maca,,maca2,game_over,pontos")
+Jogo = namedlist("Jogo", "cobra, maca, maca2, game_over, pontos")
 
-''' Jogo é criado como: Jogo(cobra, maca, Boolean,pontos)
-interp. Um jogo é composto por uma cobra, maça, pontos
+''' Jogo é criado como: Jogo(cobra, maca, maca2, Boolean, pontos)
+interp. Um jogo é composto por uma cobra, maça, maça2, pontos
 e uma flag (game_over) que indica se o jogo está acontecendo
 ou não.
 Exemplos:
@@ -66,6 +66,7 @@ JOGO_GAME_OVER = Jogo(Cobra(PAREDE_ESQUERDA, 1, 10, 5, 1, [], 20), maca_inicial,
 def fn_para_jogo(jogo):
     ... jogo.cobra
         jogo.maca
+        jogo.maca2
         jogo.game_over
         jogo.pontos
 '''
